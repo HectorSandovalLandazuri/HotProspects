@@ -7,16 +7,59 @@
 
 import SwiftUI
 
+//@MainActor class User: ObservableObject {
+//    @Published var name = "Taylor Swift"
+//}
+//
+//struct EditView: View {
+//    @EnvironmentObject var user: User
+//
+//    var body: some View {
+//        TextField("Name", text: $user.name)
+//    }
+//}
+//
+//struct DisplayView: View {
+//    @EnvironmentObject var user: User
+//
+//    var body: some View {
+//        Text(user.name)
+//    }
+//}
+//
+//struct ContentView: View {
+//    @StateObject var user = User()
+//    
+//    var body: some View {
+//        VStack {
+//            EditView()
+//            DisplayView()
+//        }
+//        .environmentObject(user)
+//    }
+//}
+
 struct ContentView: View {
+    @State private var selectedTab = "One"
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView (selection: $selectedTab) {
+            Text("Tab 1")
+                .onTapGesture {
+                    selectedTab = "Two"
+                }
+                .tabItem {
+                    Label("One", systemImage: "star")
+                }
+                .tag("One")
+            
+            Text("Tab 2")
+                .tabItem {
+                    Label("Two", systemImage: "circle")
+                }
+                .tag("Two")
         }
-        .padding()
     }
+    
 }
 
 #Preview {
