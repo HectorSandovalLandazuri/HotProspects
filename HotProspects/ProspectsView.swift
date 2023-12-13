@@ -41,15 +41,50 @@ struct ProspectsView: View {
         }
     }
     
+    enum SortedType {
+        case name, dateAdded
+    }
+    
+    @State private var sortType = SortedType.name
+    
+    var sortsProspects : [Prospect] {
+        switch sortType {
+            case .name:
+            return filteredProspects.sorted { (firstProspect, secondProspect) -> Bool in
+                return firstProspect.name < secondProspect.name
+            }
+        case .dateAdded:
+            return filteredProspects.sorted { (firstProspect, secondProspect) -> Bool in
+                return firstProspect.dateAdded < secondProspect.dateAdded
+            }
+            
+        }
+    }
+    
+    func checkbox(forType: SortedType) -> String {
+        switch forType {
+        case .name:
+            return sortType == .name ? "✔️" : ""
+        case .dateAdded:
+            return sortType == .dateAdded ? "✔️" : ""
+        }
+    }
+    
+    @State private var isShowingSheet = false
+    
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(filteredProspects) { prospect in
-                    VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundColor(.secondary)
+                ForEach(sortsProspects) { prospect in
+                    HStack {
+                        IsContactedView(isContacted: prospect.isContacted)
+                        VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundColor(.secondary)
+                        }
                     }
                     .swipeActions {
                         if prospect.isContacted {
@@ -83,9 +118,21 @@ struct ProspectsView: View {
                 } label: {
                     Label("Scan", systemImage: "qrcode.viewfinder")
                 }
+                Button("Sorting") {
+                    isShowingSheet = true
+                } 
+
             }
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "Héctor Sandoval\nhector@mrgamesmx.com", completion: handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: "Claudia Sandoval\nclaudia@mrgamesmx.com", completion: handleScan)
+            }
+            .actionSheet(isPresented: $isShowingSheet) { () -> ActionSheet in
+                ActionSheet(title: Text("Sort by"),message: nil, buttons: [.default(Text("Name\(checkbox(forType: .name))"), action: {
+                    sortType = .name
+                }), .default(Text("DateAdded\(checkbox(forType: .dateAdded))"), action: {
+                    sortType = .dateAdded
+                }), .cancel()])
+                
             }
         }
     }
@@ -100,6 +147,7 @@ struct ProspectsView: View {
             let person = Prospect()
             person.name = details[0]
             person.emailAddress = details[1]
+            person.dateAdded = Date()
             prospects.add(person)
         case .failure(let error):
             print("Scanning failed: \(error.localizedDescription)")

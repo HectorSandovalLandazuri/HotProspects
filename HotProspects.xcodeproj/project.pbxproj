@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A22A4E602B2A10FA004325F6 /* IsContactedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22A4E5F2B2A10FA004325F6 /* IsContactedView.swift */; };
 		A22BEBEA2B28D9F70014F6ED /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = A22BEBE92B28D9F70014F6ED /* CodeScanner */; };
 		A22BEBEC2B28E9620014F6ED /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22BEBEB2B28E9620014F6ED /* ImageSaver.swift */; };
 		A23BB53D2B10EF6A009B641B /* example@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A23BB53C2B10EF6A009B641B /* example@3x.png */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A22A4E5F2B2A10FA004325F6 /* IsContactedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsContactedView.swift; sourceTree = "<group>"; };
 		A22BEBEB2B28E9620014F6ED /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		A23BB53C2B10EF6A009B641B /* example@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "example@3x.png"; sourceTree = "<group>"; };
 		A2D300AE2AFEA270004CC3C5 /* HotProspects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotProspects.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,7 @@
 				A2D300B12AFEA270004CC3C5 /* HotProspectsApp.swift */,
 				A2D300B32AFEA270004CC3C5 /* ContentView.swift */,
 				A2FD2B7B2B2799C800D55630 /* ProspectsView.swift */,
+				A22A4E5F2B2A10FA004325F6 /* IsContactedView.swift */,
 				A2FD2B7D2B2799E300D55630 /* MeView.swift */,
 				A22BEBEB2B28E9620014F6ED /* ImageSaver.swift */,
 				A2D300B52AFEA271004CC3C5 /* Assets.xcassets */,
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A22A4E602B2A10FA004325F6 /* IsContactedView.swift in Sources */,
 				A2FD2B7E2B2799E300D55630 /* MeView.swift in Sources */,
 				A22BEBEC2B28E9620014F6ED /* ImageSaver.swift in Sources */,
 				A2FD2B802B279E3400D55630 /* Prospect.swift in Sources */,
